@@ -6,7 +6,7 @@ return {
 	config = function()
 		local nvim_tmux_nav = require 'nvim-tmux-navigation'
 
-		-- nvim_tmux_nav.setup {}
+		nvim_tmux_nav.setup {}
 
 		keymap('n', "<C-h>", nvim_tmux_nav.NvimTmuxNavigateLeft, { silent = true, desc = 'Navigate left' })
 		keymap('n', "<C-j>", nvim_tmux_nav.NvimTmuxNavigateDown, { silent = true, desc = 'Navigate down' })

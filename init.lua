@@ -289,10 +289,10 @@ keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", { silent = true })
-keymap("n", "<C-j>", "<C-w>j", { silent = true })
-keymap("n", "<C-k>", "<C-w>k", { silent = true })
-keymap("n", "<C-l>", "<C-w>l", { silent = true })
+-- keymap("n", "<C-h>", "<C-w>h", { silent = true })
+-- keymap("n", "<C-j>", "<C-w>j", { silent = true })
+-- keymap("n", "<C-k>", "<C-w>k", { silent = true })
+-- keymap("n", "<C-l>", "<C-w>l", { silent = true })
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", { silent = true })
@@ -301,12 +301,12 @@ keymap("n", "<C-Left>", ":vertical resize -2<CR>", { silent = true })
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", { silent = true })
 
 -- Navigate buffers
-keymap("n", "<S-h>", ":BufferLineCyclePrev<CR>", { silent = true })
-keymap("n", "<S-l>", ":BufferLineCycleNext<CR>", { silent = true })
+-- keymap("n", "<S-h>", ":BufferLineCyclePrev<CR>", { silent = true })
+-- keymap("n", "<S-l>", ":BufferLineCycleNext<CR>", { silent = true })
 
 -- Reorder buffers
-keymap("n", "<S-A-h>", ":BufferLineMovePrev<CR>", { silent = true })
-keymap("n", "<S-A-l>", ":BufferLineMoveNext<CR>", { silent = true })
+-- keymap("n", "<S-A-h>", ":BufferLineMovePrev<CR>", { silent = true })
+-- keymap("n", "<S-A-l>", ":BufferLineMoveNext<CR>", { silent = true })
 
 -- Close buffers
 keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", { silent = true })
@@ -336,7 +336,7 @@ keymap("v", ">", ">gv", { silent = true })
 keymap("n", "<leader>z", "za", { silent = true })
 
 -- Press jk fast to enter
-keymap("i", "jk", "<ESC>", { silent = true })
+-- keymap("i", "jk", "<ESC>", { silent = true })
 
 -- Better paste
 keymap("v", "p", '"_dP', { silent = true })
