@@ -26,6 +26,13 @@ vim.g.maplocalleader = ' '
 -- Shorten function name
 -- See `:help vim.keymap.set()`
 local keymap = vim.keymap.set
+-- Modes
+--   normal_mode = "n",
+--   insert_mode = "i",
+--   visual_mode = "v",
+--   visual_block_mode = "x",
+--   term_mode = "t",
+--   command_mode = "c",
 
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
@@ -264,6 +271,13 @@ vim.o.showmode = false
 -- More space in the neovim command line for displaying messages
 vim.o.cmdheight = 1
 
+-- UFO plugin folding
+vim.opt.foldcolumn = '1' -- '0' is not bad
+vim.opt.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
+vim.opt.foldlevelstart = 99
+vim.opt.foldenable = true
+vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+
 -- [[ Basic Keymaps ]]
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
@@ -273,6 +287,63 @@ keymap({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- Remap for dealing with word wrap
 keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+-- Better window navigation
+keymap("n", "<C-h>", "<C-w>h", { silent = true })
+keymap("n", "<C-j>", "<C-w>j", { silent = true })
+keymap("n", "<C-k>", "<C-w>k", { silent = true })
+keymap("n", "<C-l>", "<C-w>l", { silent = true })
+
+-- Resize with arrows
+keymap("n", "<C-Up>", ":resize -2<CR>", { silent = true })
+keymap("n", "<C-Down>", ":resize +2<CR>", { silent = true })
+keymap("n", "<C-Left>", ":vertical resize -2<CR>", { silent = true })
+keymap("n", "<C-Right>", ":vertical resize +2<CR>", { silent = true })
+
+-- Navigate buffers
+keymap("n", "<S-h>", ":BufferLineCyclePrev<CR>", { silent = true })
+keymap("n", "<S-l>", ":BufferLineCycleNext<CR>", { silent = true })
+
+-- Reorder buffers
+keymap("n", "<S-A-h>", ":BufferLineMovePrev<CR>", { silent = true })
+keymap("n", "<S-A-l>", ":BufferLineMoveNext<CR>", { silent = true })
+
+-- Close buffers
+keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", { silent = true })
+
+-- Clear highlights
+keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", { silent = true })
+
+-- Move text up and down (normal mode)
+keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", { silent = true })
+keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", { silent = true })
+
+-- Move text up and down (visual mode)
+keymap("v", "<A-j>", ":m .+1<CR>==", { silent = true })
+keymap("v", "<A-k>", ":m .-2<CR>==", { silent = true })
+
+-- Move text up and down (visual block mode)
+keymap("x", "K", ":move '<-2<CR>gv-gv", { silent = true })
+keymap("x", "J", ":move '>+1<CR>gv-gv", { silent = true })
+keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", { silent = true })
+keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", { silent = true })
+
+-- Stay in indent mode
+keymap("v", "<", "<gv", { silent = true })
+keymap("v", ">", ">gv", { silent = true })
+
+-- Folding remap
+keymap("n", "<leader>z", "za", { silent = true })
+
+-- Press jk fast to enter
+keymap("i", "jk", "<ESC>", { silent = true })
+
+-- Better paste
+keymap("v", "p", '"_dP', { silent = true })
+
+-- Split screen
+keymap("n", "<leader>v", ":vsplit<CR>", { silent = true }) -- vertically
+keymap("n", "<leader>s", ":split<CR>", { silent = true })  -- horizontally
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
