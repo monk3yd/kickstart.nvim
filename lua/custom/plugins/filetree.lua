@@ -9,7 +9,11 @@ return {
 	config = function()
 		-- Unless you are still migrating, remove the deprecated commands from v1.x
 		vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
-		require('neo-tree').setup {}
+
+		local neotree = require 'neo-tree'
+		neotree.setup {}
+
+		vim.keymap.set("n", "<Space>e", neotree.focus, { desc = 'Open File [E]xplorer' })
 	end,
 
 }
