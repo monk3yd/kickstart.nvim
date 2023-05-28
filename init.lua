@@ -203,80 +203,129 @@ require('lazy').setup({
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
 
+-- Create a backup file
+vim.o.backup         = false
+
+-- Sync clipboard between OS and Neovim.
+--  Remove this option if you want your OS clipboard to remain independent.
+--  See `:help 'clipboard'`
+vim.o.clipboard      = 'unnamedplus'
+
+-- Encoding used to read file
+vim.o.encoding       = 'utf-8'
+
+-- Encoding used to write to a file
+vim.o.fileencoding   = 'utf-8'
+
+-- More space in the neovim command line for displaying messages
+vim.o.cmdheight      = 1
+
+-- Set completeopt to have a better completion experience
+vim.o.completeopt    = 'menuone,noselect'
+
+-- `` is visible in markdown files
+vim.o.conceallevel   = 0
+
 -- Set highlight on search
-vim.o.hlsearch = false
+vim.o.hlsearch       = false
 
 -- Move highlight as you add characters to the search
-vim.o.incsearch = true
+vim.o.incsearch      = true
 
 -- Make line numbers default
-vim.wo.number = true
+vim.wo.number        = true
 
 -- Relative numbered lines
 vim.o.relativenumber = true
 
 -- Except cursor line, set line number
-vim.o.nu = true
+vim.o.nu             = true
 
 -- Highlight the current line
-vim.o.cursorline = true
+vim.o.cursorline     = true
 
 -- Display lines as one long line
-vim.o.wrap = false
+vim.o.wrap           = false
 
 -- Enable mouse mode
-vim.o.mouse = 'a'
-
--- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.o.clipboard = 'unnamedplus'
+vim.o.mouse          = 'a'
 
 -- Enable break indent
-vim.o.breakindent = true
+vim.o.breakindent    = true
 
 -- Save undo history
-vim.o.undofile = true
+vim.o.undofile       = true
 
 -- Case insensitive searching UNLESS /C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
+vim.o.ignorecase     = true
+vim.o.smartcase      = true
 
 -- Keep signcolumn on by default
-vim.wo.signcolumn = 'yes'
+vim.wo.signcolumn    = 'yes'
 
 -- Decrease update time
-vim.o.updatetime = 250
-vim.o.timeout = true
-vim.o.timeoutlen = 300
-
--- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.o.updatetime     = 100 -- faster completion
+vim.o.timeout        = true
+vim.o.timeoutlen     = 300 -- time to wait for a mapped sequence to complete (in milliseconds)
 
 -- NOTE: You should make sure your terminal supports this
-vim.o.termguicolors = true
+vim.o.termguicolors  = true
 
 -- Minimal number of screen lines to keep above and below the cursor
-vim.o.scrolloff = 8
+vim.o.scrolloff      = 8
 
 -- Minimal number of screen columns to keep to the left and right of the cursor if wrap is `false`
-vim.o.sidescrolloff = 8
+vim.o.sidescrolloff  = 8
 
 -- Font used in graphical neovim applications.  default: "monospace:h17"
-vim.o.guifont = "MonoLisa:h17"
+vim.o.guifont        = "MonoLisa:h17"
 
 -- Don't need to see things like -- INSERT -- anymore
-vim.o.showmode = false
+vim.o.showmode       = false
 
--- More space in the neovim command line for displaying messages
-vim.o.cmdheight = 1
+-- Show tabs
+vim.o.showtabline    = 0
+
+-- Convert tab to spaces
+vim.o.expandtab      = true
+
+-- Force all horizontal splits to go below current window
+vim.o.splitbelow     = true
+
+-- Force all vertical splits to got to the right of the current window
+vim.o.splitright     = true
+
+-- Creates swap file
+vim.o.swapfile       = false
+
+-- Pop up menu height
+vim.o.pumheight      = 10
+
+-- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
+-- vim.o.writebackup = false
+
+-- Special
+-- hide all the completion messages, e.g. "-- XXX completion (YYY)", "match 1 of 2", "The only match", "Pattern not found"
+vim.opt.shortmess:append "c"
+
+-- keys allowed to move to the previous/next line when the beginning/end of line is reached
+vim.opt.whichwrap:append("<,>,[,],h,l")
+
+-- treats words with `-` as single words
+vim.opt.iskeyword:append("-")
+
+-- This is a sequence of letters which describes how automatic formatting is to be done
+vim.opt.formatoptions:remove({ "c", "r", "o" })
+
+-- TODO
+vim.opt.linebreak      = true
 
 -- UFO plugin folding
-vim.opt.foldcolumn = '1' -- '0' is not bad
-vim.opt.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
+vim.opt.foldcolumn     = '1' -- '0' is not bad
+vim.opt.foldlevel      = 99  -- Using ufo provider need a large value, feel free to decrease the value
 vim.opt.foldlevelstart = 99
-vim.opt.foldenable = true
-vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+vim.opt.foldenable     = true
+vim.opt.fillchars      = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
 -- [[ Basic Keymaps ]]
 -- Keymaps for better default experience
@@ -287,12 +336,6 @@ keymap({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- Remap for dealing with word wrap
 keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-
--- Better window navigation
--- keymap("n", "<C-h>", "<C-w>h", { silent = true })
--- keymap("n", "<C-j>", "<C-w>j", { silent = true })
--- keymap("n", "<C-k>", "<C-w>k", { silent = true })
--- keymap("n", "<C-l>", "<C-w>l", { silent = true })
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", { silent = true })
@@ -339,11 +382,39 @@ keymap("n", "<leader>z", "za", { silent = true })
 -- keymap("i", "jk", "<ESC>", { silent = true })
 
 -- Better paste
-keymap("v", "p", '"_dP', { silent = true })
+-- keymap("v", "p", '"_dP', { silent = true })
+-- greatest remap ever
+keymap("x", "<leader>p", [["_dP]])
+
+
+-- Better yank/copy
+-- next greatest remap ever : asbjornHaland
+keymap({ "n", "v" }, "<leader>y", [["+y]])
+keymap("n", "<leader>Y", [["+Y]])
+
+-- Quickfix navigation
+keymap("n", "<C-k>", "<cmd>cnext<CR>zz")
+keymap("n", "<C-j>", "<cmd>cprev<CR>zz")
+keymap("n", "<leader>k", "<cmd>lnext<CR>zz")
+keymap("n", "<leader>j", "<cmd>lprev<CR>zz")
+
 
 -- Split screen
 keymap("n", "<leader>v", ":vsplit<CR>", { silent = true }) -- vertically
 keymap("n", "<leader>s", ":split<CR>", { silent = true })  -- horizontally
+
+-- Hold cursor in the same place when J is pressed.
+-- J appends the line below to the end of current line
+keymap("n", "J", "mzJ`z")
+
+-- Hold cursor in the middle when half page jumping
+keymap("n", "<C-d>", "<C-d>zz")
+keymap("n", "<C-u>", "<C-u>zz")
+
+-- Allow search terms to stay in the middle
+keymap("n", "n", "nzzzv")
+keymap("n", "N", "Nzzzv")
+
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
