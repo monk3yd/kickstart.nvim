@@ -337,6 +337,13 @@ keymap({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+
+-- Better window navigation
+-- keymap("n", "<C-h>", "<C-w>h", { silent = true })
+-- keymap("n", "<C-j>", "<C-w>j", { silent = true })
+-- keymap("n", "<C-k>", "<C-w>k", { silent = true })
+-- keymap("n", "<C-l>", "<C-w>l", { silent = true })
+
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", { silent = true })
 keymap("n", "<C-Down>", ":resize +2<CR>", { silent = true })
@@ -393,11 +400,10 @@ keymap({ "n", "v" }, "<leader>y", [["+y]])
 keymap("n", "<leader>Y", [["+Y]])
 
 -- Quickfix navigation
-keymap("n", "<C-k>", "<cmd>cnext<CR>zz")
-keymap("n", "<C-j>", "<cmd>cprev<CR>zz")
-keymap("n", "<leader>k", "<cmd>lnext<CR>zz")
-keymap("n", "<leader>j", "<cmd>lprev<CR>zz")
-
+-- keymap("n", "<C-k>", "<cmd>cnext<CR>zz")
+-- keymap("n", "<C-j>", "<cmd>cprev<CR>zz")
+-- keymap("n", "<leader>k", "<cmd>lnext<CR>zz")
+-- keymap("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 -- Split screen
 keymap("n", "<leader>v", ":vsplit<CR>", { silent = true }) -- vertically
