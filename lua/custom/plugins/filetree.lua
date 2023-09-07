@@ -7,12 +7,14 @@ return {
 		"MunifTanjim/nui.nvim",
 	},
 	config = function()
+		vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+
 		require("neo-tree").setup()
-		vim.keymap.set("n", "<Space>e", ":Neotree.focus", { desc = 'Open File [E]xplorer' })
+		vim.keymap.set("n", "<Space>e", ":Neotree toggle<CR>", { desc = 'Open File [E]xplorer' })
+		-- vim.keymap.set("n", "<Space>e", ":Neotree focus<CR>", { desc = 'Open File [E]xplorer' })
 	end
 	-- config = function()
 	-- 	-- Unless you are still migrating, remove the deprecated commands from v1.x
-	-- 	vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 	-- 	local neotree = require 'neo-tree'
 	-- 	neotree.setup {
 	-- 		close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
