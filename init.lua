@@ -301,6 +301,11 @@ vim.o.swapfile       = false
 -- Pop up menu height
 vim.o.pumheight      = 10
 
+vim.o.tabstop        = 4
+vim.o.shiftwidth     = 4
+vim.o.softtabstop    = 0
+vim.o.expandtab      = true
+
 -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 -- vim.o.writebackup = false
 
@@ -489,9 +494,9 @@ require('nvim-treesitter.configs').setup {
 
   modules = {},
   highlight = { enable = true },
-  indent = { enable = true, disable = { 'python' } },
+  indent = { enable = true, disable = { 'python', 'go' } },
   incremental_selection = {
-    enable = true,
+    enable = false,
     keymaps = {
       init_selection = '<c-space>',
       node_incremental = '<c-space>',
@@ -603,7 +608,7 @@ end
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
   -- clangd = {},
-  -- gopls = {},
+  gopls = {},
   pyright = {},
   -- rust_analyzer = {},
   tsserver = {},
@@ -666,7 +671,16 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-    ['<Tab>'] = cmp.mapping(function(fallback)
+    ['<C-i>'] = cmp.mapping(function(fallback)
+      local fallback_key = vim.api.nvim_replace_termcodes('<Tab>', true, true, true)
+      local resolved_key = vim.fn['copilot#Accept'](fallback)
+      if fallback_key == resolved_key then
+        cmp.confirm({ select = true })
+      else
+        vim.api.nvim_feedkeys(resolved_key, 'n', true)
+      end
+    end),
+    ['<C-.>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.expand_or_locally_jumpable() then
@@ -675,7 +689,7 @@ cmp.setup {
         fallback()
       end
     end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
+    ['<C-,>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       elseif luasnip.locally_jumpable(-1) then
