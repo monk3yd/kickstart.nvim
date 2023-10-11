@@ -108,11 +108,11 @@ require('lazy').setup({
     opts = {
       -- See `:help gitsigns.txt`
       signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
+        add = { text = ' +' },
+        change = { text = ' ~' },
+        delete = { text = ' _' },
+        topdelete = { text = ' ‾' },
+        changedelete = { text = ' ~' },
       },
       on_attach = function(bufnr)
         keymap('n', '[c', require('gitsigns').prev_hunk, { buffer = bufnr, desc = 'Go to Previous Hunk' })
