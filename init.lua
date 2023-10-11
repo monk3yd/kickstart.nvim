@@ -221,7 +221,7 @@ require('lazy').setup({
   --    Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
 }, {})
 
 -- [[ Setting options ]]
@@ -246,11 +246,11 @@ vim.o.fileencoding   = 'utf-8'
 -- vim.o.cmdheight      = 1
 
 -- Case-insensitive searching UNLESS \C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
+vim.o.ignorecase     = true
+vim.o.smartcase      = true
 
 -- Keep signcolumn on by default
-vim.wo.signcolumn = 'yes'
+vim.wo.signcolumn    = 'yes'
 
 -- Decrease update time
 vim.o.updatetime     = 250 -- faster completion
