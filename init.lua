@@ -101,7 +101,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',          opts = {} },
+  { 'folke/which-key.nvim',  opts = {} },
   {
     -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -158,7 +158,7 @@ require('lazy').setup({
   },
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim',         opts = {} },
+  { 'numToStr/Comment.nvim', opts = {} },
 
   -- Fuzzy Finder (files, lsp, etc)
   { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
@@ -218,7 +218,18 @@ vim.o.encoding       = 'utf-8'
 vim.o.fileencoding   = 'utf-8'
 
 -- More space in the neovim command line for displaying messages
-vim.o.cmdheight      = 1
+-- vim.o.cmdheight      = 1
+
+-- Case-insensitive searching UNLESS \C or capital in search
+vim.o.ignorecase     = true
+vim.o.smartcase      = true
+
+-- Keep signcolumn on by default
+vim.wo.signcolumn    = 'yes'
+
+-- Decrease update time
+vim.o.updatetime     = 250 -- faster completion
+vim.o.timeoutlen     = 300 -- time to wait for a mapped sequence to complete (in milliseconds)
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt    = 'menuone,noselect'
@@ -255,18 +266,6 @@ vim.o.breakindent    = true
 
 -- Save undo history
 vim.o.undofile       = true
-
--- Case insensitive searching UNLESS /C or capital in search
-vim.o.ignorecase     = true
-vim.o.smartcase      = true
-
--- Keep signcolumn on by default
-vim.wo.signcolumn    = 'yes'
-
--- Decrease update time
-vim.o.updatetime     = 100 -- faster completion
-vim.o.timeout        = true
-vim.o.timeoutlen     = 300 -- time to wait for a mapped sequence to complete (in milliseconds)
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors  = true
@@ -478,9 +477,12 @@ keymap('n', '<leader>sk', require('telescope.builtin').keymaps, { desc = '[S]ear
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
-require('nvim-treesitter.configs').setup {
-  -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim', 'svelte' },
+-- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'
+vim.defer_fn(function()
+  require('nvim-treesitter.configs').setup {
+    -- Add languages to be installed here that you want installed for treesitter
+    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'vimdoc', 'vim',
+      'bash' },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
