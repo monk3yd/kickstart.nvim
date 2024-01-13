@@ -155,14 +155,73 @@ require('lazy').setup({
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     -- See `:help lualine.txt`
     opts = {
       options = {
-        icons_enabled = false,
-        -- theme = 'onedark',
+        icons_enabled = true, -- Enables the display of icons alongside the component.
+        -- Defines the icon to be displayed in front of the component.
+        -- Can be string|table
+        -- As table it must contain the icon as first entry and can use
+        -- color option to custom color the icon. Example:
+        -- {'branch', icon = ''} / {'branch', icon = {'', color={fg='green'}}}
+
+        -- icon position can also be set to the right side from table. Example:
+        -- {'branch', icon = {'', align='right', color={fg='green'}}}
+
         theme = 'gruvbox-material',
+        -- theme = 'onedark',
+
         component_separators = '|',
         section_separators = '',
+      },
+      sections = {
+        lualine_a = { 'mode' },
+        lualine_b = { 'branch' },
+        lualine_c = {
+          {
+            'filename',
+            file_status = true,     -- Displays file status (readonly status, modified status)
+            newfile_status = false, -- Display new file status (new file means no write after created)
+
+            -- 0: Just the filename
+            -- 1: Relative path
+            -- 2: Absolute path
+            -- 3: Absolute path, with tilde as the home directory
+            -- 4: Filename and parent dir, with tilde as the home directory
+            path = 1,
+
+            -- Shortens path to leave 40 spaces in the window
+            -- for other components. (terrible name, any suggestions?)
+            shorting_target = 40,
+
+            symbols = {
+              modified = '[+]',      -- Text to show when the file is modified.
+              readonly = '[-]',      -- Text to show when the file is non-modifiable or readonly.
+              unnamed = '[No Name]', -- Text to show for unnamed buffers.
+              newfile = '[New]',     -- Text to show for newly created file before first write
+            }
+          },
+        },
+        lualine_x = {
+          {
+            'filetype',
+            colored = false,                 -- Displays filetype icon in color if set to true.
+            icon_only = false,               -- Displays only an icon
+            icon_align = { align = 'right' } -- Display filetype icon on the right hand side
+          },
+          {
+            'fileformat',
+            symbols = {
+              unix = '', -- e712
+              dos = '', -- e70f
+              mac = '', -- e711
+            }
+          },
+          'encoding'
+        },
+        lualine_y = { 'progress' },
+        -- lualine_z = { 'location' },
       },
     },
   },
@@ -560,10 +619,10 @@ vim.defer_fn(function()
       swap = {
         enable = true,
         swap_next = {
-          ['<leader>a'] = '@parameter.inner',
+          ['<leader>d'] = '@parameter.inner',
         },
         swap_previous = {
-          ['<leader>A'] = '@parameter.inner',
+          ['<leader>D'] = '@parameter.inner',
         },
       },
     },
