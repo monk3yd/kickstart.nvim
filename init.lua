@@ -220,7 +220,7 @@ require('lazy').setup({
           },
           'encoding'
         },
-        lualine_y = { 'progress' },
+        -- lualine_y = { 'progress' },
         -- lualine_z = { 'location' },
       },
     },
