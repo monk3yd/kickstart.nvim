@@ -202,8 +202,8 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Remap for dealing with word wrap
-keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Better window navigation
 -- keymap("n", "<C-h>", "<C-w>h", { silent = true })
@@ -212,10 +212,10 @@ keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 -- keymap("n", "<C-l>", "<C-w>l", { silent = true })
 
 -- Resize with arrows
-keymap("n", "<C-Up>", ":resize -2<CR>", { silent = true })
-keymap("n", "<C-Down>", ":resize +2<CR>", { silent = true })
-keymap("n", "<C-Left>", ":vertical resize -2<CR>", { silent = true })
-keymap("n", "<C-Right>", ":vertical resize +2<CR>", { silent = true })
+vim.keymap.set("n", "<C-Up>", ":resize -2<CR>", { silent = true })
+vim.keymap.set("n", "<C-Down>", ":resize +2<CR>", { silent = true })
+vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", { silent = true })
+vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { silent = true })
 
 -- Navigate buffers
 -- keymap("n", "<S-h>", ":BufferLineCyclePrev<CR>", { silent = true })
@@ -226,64 +226,64 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", { silent = true })
 -- keymap("n", "<S-A-l>", ":BufferLineMoveNext<CR>", { silent = true })
 
 -- Close buffers
-keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", { silent = true })
+vim.keymap.set("n", "<S-q>", "<cmd>Bdelete!<CR>", { silent = true })
 
 -- Move text up and down (normal mode)
-keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", { silent = true })
-keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", { silent = true })
+vim.keymap.set("n", "<A-j>", "<Esc>:m .+1<CR>==gi", { silent = true })
+vim.keymap.set("n", "<A-k>", "<Esc>:m .-2<CR>==gi", { silent = true })
 
 -- Move text up and down (visual mode)
-keymap("v", "<A-j>", ":m .+1<CR>==", { silent = true })
-keymap("v", "<A-k>", ":m .-2<CR>==", { silent = true })
+vim.keymap.set("v", "<A-j>", ":m .+1<CR>==", { silent = true })
+vim.keymap.set("v", "<A-k>", ":m .-2<CR>==", { silent = true })
 
 -- Move text up and down (visual block mode)
-keymap("x", "K", ":move '<-2<CR>gv-gv", { silent = true })
-keymap("x", "J", ":move '>+1<CR>gv-gv", { silent = true })
-keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", { silent = true })
-keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", { silent = true })
+vim.keymap.set("x", "K", ":move '<-2<CR>gv-gv", { silent = true })
+vim.keymap.set("x", "J", ":move '>+1<CR>gv-gv", { silent = true })
+vim.keymap.set("x", "<A-j>", ":move '>+1<CR>gv-gv", { silent = true })
+vim.keymap.set("x", "<A-k>", ":move '<-2<CR>gv-gv", { silent = true })
 
 -- Stay in indent mode
-keymap("v", "<", "<gv", { silent = true })
-keymap("v", ">", ">gv", { silent = true })
+vim.keymap.set("v", "<", "<gv", { silent = true })
+vim.keymap.set("v", ">", ">gv", { silent = true })
 
 -- Folding remap
-keymap("n", "<leader>z", "za", { silent = true })
+vim.keymap.set("n", "<leader>z", "za", { silent = true })
 
 -- Press jk fast to enter
--- keymap("i", "jk", "<ESC>", { silent = true })
+-- vim.keymap.set("i", "jk", "<ESC>", { silent = true })
 
 -- Better paste
--- keymap("v", "p", '"_dP', { silent = true })
+-- vim.keymap.set("v", "p", '"_dP', { silent = true })
 -- greatest remap ever
-keymap("x", "<leader>p", [["_dP]])
+vim.keymap.set("x", "<leader>p", [["_dP]])
 
 
 -- Better yank/copy
 -- next greatest remap ever : asbjornHaland
-keymap({ "n", "v" }, "<leader>y", [["+y]])
-keymap("n", "<leader>Y", [["+Y]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 -- Quickfix navigation
--- keymap("n", "<C-k>", "<cmd>cnext<CR>zz")
--- keymap("n", "<C-j>", "<cmd>cprev<CR>zz")
--- keymap("n", "<leader>k", "<cmd>lnext<CR>zz")
--- keymap("n", "<leader>j", "<cmd>lprev<CR>zz")
+-- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
+-- vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+-- vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
+-- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 -- Split screen
-keymap("n", "<leader>v", ":vsplit<CR>", { silent = true }) -- vertically
-keymap("n", "<leader>s", ":split<CR>", { silent = true })  -- horizontally
+vim.keymap.set("n", "<leader>v", ":vsplit<CR>", { silent = true }) -- vertically
+vim.keymap.set("n", "<leader>s", ":split<CR>", { silent = true })  -- horizontally
 
 -- Hold cursor in the same place when J is pressed.
 -- J appends the line below to the end of current line
-keymap("n", "J", "mzJ`z")
+vim.keymap.set("n", "J", "mzJ`z")
 
 -- Hold cursor in the middle when half page jumping
-keymap("n", "<C-d>", "<C-d>zz")
-keymap("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 -- Allow search terms to stay in the middle
-keymap("n", "n", "nzzzv")
-keymap("n", "N", "Nzzzv")
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
