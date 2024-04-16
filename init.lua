@@ -155,6 +155,11 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 vim.opt.sidescrolloff = 10
 
+vim.o.tabstop        = 4
+vim.o.shiftwidth     = 4
+vim.o.softtabstop    = 0
+vim.o.expandtab      = true
+
 -- UFO plugin folding
 vim.opt.foldcolumn     = '1' -- '0' is not bad
 vim.opt.foldlevel      = 99  -- Using ufo provider need a large value, feel free to decrease the value
@@ -206,10 +211,10 @@ vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Better window navigation
--- keymap("n", "<C-h>", "<C-w>h", { silent = true })
--- keymap("n", "<C-j>", "<C-w>j", { silent = true })
--- keymap("n", "<C-k>", "<C-w>k", { silent = true })
--- keymap("n", "<C-l>", "<C-w>l", { silent = true })
+-- vim.keymap.set("n", "<C-h>", "<C-w>h", { silent = true })
+-- vim.keymap.set("n", "<C-j>", "<C-w>j", { silent = true })
+-- vim.keymap.set("n", "<C-k>", "<C-w>k", { silent = true })
+-- vim.keymap.set("n", "<C-l>", "<C-w>l", { silent = true })
 
 -- Resize with arrows
 vim.keymap.set("n", "<C-Up>", ":resize -2<CR>", { silent = true })
@@ -634,8 +639,8 @@ require('lazy').setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         -- clangd = {},
-        -- gopls = {},
-        -- pyright = {},
+        gopls = {},
+        pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
