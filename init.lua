@@ -262,23 +262,6 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
--- vim-tmux-navigator
--- vim.keymap.set("n", "<C-h>", "<cmd>TmuxNavigateLeft<CR>", { silent = true })
--- vim.keymap.set("n", "<C-j>", "<cmd>TmuxNavigateDown<CR>", { silent = true })
--- vim.keymap.set("n", "<C-k>", "<cmd>TmuxNavigateUp<CR>", { silent = true })
--- vim.keymap.set("n", "<C-l>", "<cmd>TmuxNavigateRight<CR>", { silent = true })
--- vim.keymap.set("n", "<C-\\>", "<cmd>TmuxNavigatePrevious<CR>", { silent = true })
---
--- overwrite lazyvim mappings with vim-tmux-navigator mappings
--- see: https://github.com/christoomey/vim-tmux-navigator/blob/master/plugin/tmux_navigator.vim
--- vim.cmd([[
---   noremap <silent> <c-h> :<C-U>TmuxNavigateLeft<cr>
---   noremap <silent> <c-j> :<C-U>TmuxNavigateDown<cr>
---   noremap <silent> <c-k> :<C-U>TmuxNavigateUp<cr>
---   noremap <silent> <c-l> :<C-U>TmuxNavigateRight<cr>
---   noremap <silent> <c-\> :<C-U>TmuxNavigatePrevious<cr>
--- ]])
-
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
